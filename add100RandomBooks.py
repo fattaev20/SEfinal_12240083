@@ -9,6 +9,17 @@ APIHOST = "http://library.demo.local"
 LOGIN = "cisco"
 PASSWORD = "Cisco123!"
 
+def deleteBook(id):
+    r = requests.delete(
+        f"{APIHOST}/api/v1/books/{id}",
+        headers = {
+            "Content-type": "application/json",
+            "X-API-Key":apiKey
+        },
+    )
+    if r.status_code == 200:
+        print(f"deleted id: {i}")
+
 def getAuthToken():
     authCreds = (LOGIN, PASSWORD)
     r = requests.post(
@@ -39,11 +50,19 @@ apiKey = getAuthToken()
 
 # Using the faker module, generate random "fake" books
 fake = Faker()
-for i in range(6, 31):
-    print(i)
-    fakeTitle = fake.catch_phrase()
-    fakeAuthor = fake.name()
-    fakeISBN = fake.isbn13()
-    book = {"id":i, "title": fakeTitle, "author": fakeAuthor, "isbn": fakeISBN}
-    # add the new random "fake" book using the API
-    addBook(book, apiKey) 
+# for i in range(6, 31):
+#     print(i)
+#     fakeTitle = fake.catch_phrase()
+#     fakeAuthor = fake.name()
+#     fakeISBN = fake.isbn13()
+#     book = {"id":i, "title": fakeTitle, "author": fakeAuthor, "isbn": fakeISBN}
+#     # add the new random "fake" book using the API
+#     addBook(book, apiKey) 
+
+#delete first 5
+for i in range(1, 6):
+    deleteBook(i)
+#Delete last 5
+for i in range(25, 31):
+    deleteBook(i)
+
