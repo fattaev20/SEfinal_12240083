@@ -60,9 +60,9 @@ fake = Faker()
 #     addBook(book, apiKey) 
 
 #delete first 5
-for i in range(1, 6):
+for i in range(16, 22):
     deleteBook(i)
 #Delete last 5
-for i in range(25, 31):
+for i in range(35, 41):
     deleteBook(i)
 
